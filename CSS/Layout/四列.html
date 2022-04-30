@@ -1,0 +1,48 @@
+<!-- 共4列，首列宽度固定为200px，其余3列均分剩余宽度，每列间距10px -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        .box{
+            display: flex;
+        }
+        .box1{
+            width:100px;
+            height:100px;
+            background-color: red;
+        }
+        .box2{
+            margin-left:10px;
+            background-color: green;
+            flex:1;
+        }
+        .box3{
+            margin-left:10px;
+            background-color: aquamarine;
+            flex:1;
+        }
+        .box4{
+            margin-left:10px;
+            background-color: blueviolet;
+            flex:1
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="box1"></div>
+        <div class="box2"></div>
+        <div class="box3"></div>
+        <div class="box4"></div>
+    </div>
+</body>
+</html>

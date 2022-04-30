@@ -1,0 +1,69 @@
+<!-- position 三栏布局 -->
+
+<!-- 
+    兼容性好、简单、下面的盒子要要margin-top撑开，脱离文档流
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>position</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box1 {
+            width: 100px;
+            height: 100px;
+            background-color: red;
+            position:absolute;
+            left:0;
+        }
+
+        .box2 {
+            width: 150px;
+            height:150px;
+            background-color: blue;
+            position:absolute;  
+            right:0;
+        }
+
+        .box3 {
+            position:absolute;
+            height: 200px;
+            width: calc(100% - 250px);
+            left:100px;
+            /* right:150px; */
+            background-color: green;
+        }
+
+        .box{
+            position: relative;
+            min-width: 300px;
+        }
+
+        .other{
+            width:600px;
+            height:50px;
+            background-color: aquamarine;
+            margin-top:200px;
+        }
+
+    </style>
+</head>
+<body>
+    <p>gdfgdgdfg</p>
+    <div class="box clearfix">
+        <div class="box1">左</div>
+        <div class="box2">右</div>
+        <div class="box3">中</div>   
+    </div>
+
+    <div class="other"></div>
+</body>
+</html>

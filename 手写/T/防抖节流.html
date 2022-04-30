@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="zh-cmn-Hans">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge, chrome=1">
+    <title>debounce</title>
+</head>
+
+<body>
+    <!-- input 搜索防抖，如何处理中文输入 -->
+    <div>
+        <input type="text" id="ipt">
+    </div>
+    <script>
+        let ipt = document.getElementById('ipt');
+        let dbFun = debounce()
+        ipt.addEventListener('keyup', function (e) {
+            dbFun(e.target.value);
+        })
+
+        function debounce() {
+            let timer;
+            return function (value) {
+                clearTimeout(timer);
+                timer = setTimeout(() => {
+                    console.log(value)
+                }, 500);
+            }
+        } 
+    </script>
+
+
+
+
+    <!-- https://github.com/mqyqingfeng/Blog/issues/22 -->
+    <script>
+        window.onresize = function () {
+            // handle();
+            handle3()
+        }
+        function test() {
+            console.log("a");
+        }
+
+        //防抖函数原理：在事件被触发n秒后再执⾏回调，如果在这n秒内⼜被触发，则重新计时。
+
+        //1.先等待再执行
+        function debounce1(func, wait = 5) {
+            var timmer
+            return function () {
+                var that = this;
+                var args = arguments;
+                clearTimeout(timmer)
+                timmer = setTimeout(function () {
+                    func.apply(that, args);
+                }, wait)
+            }
+        }
+        // var handle = debounce1(test, 1000);
+
+
+
+
+        //2.立刻执行（先执行再等待）,并且返回值
+        function debounce1(func, wait, immediate) {
+            var timeout, result;
+            return function () {
+                var context = this;
+                var args = arguments;
+                if (timeout) clearTimeout(timeout);
+                if (immediate) {
+                    var callNow = !timeout;
+                    //异步进宏队列
+                    timeout = setTimeout(function () {
+                        timeout = null;
+                    }, wait)
+                    if (callNow) result = func.apply(context, args)      //先执行这里，同步代码
+                }
+                else {  //不传immediate的情况
+                    timeout = setTimeout(function () {
+                        func.apply(context, args)
+                    }, wait);
+                }
+                return result;
+            }
+        }
+
+        //var handle2 = debounce1(test, 1000, true);
+
+
+        //节流函数原理:规定在⼀个单位时间内，只能触发⼀次函数。如果这个单位时间内触发多次函数，只有⼀次⽣效。
+
+        //https://www.kancloud.cn/surahe/front-end-notebook/1051941
+        //节流
+        //1.使用时间戳（会立刻执行一次,因为第一次previous是0,而now是一个时间戳很大）
+
+        function throttle1(func, wait) {
+            var previous = 0;
+
+            return function () {
+                var now = +new Date();
+                var args = arguments;
+                var context = this;
+                if (now - previous > wait) {
+                    func.apply(context, args);
+                    previous = now;
+                }
+            }
+        }
+
+        var handle3 = throttle1(test, 1000);
+
+
+        //2.使用计时器(最后一次不足wait,等到wait后还是会执行)
+        //当触发事件的时候，我们设置一个定时器，再触发事件的时候，
+        //如果定时器存在，就不执行，直到定时器执行，然后执行函数，清空定时器，这样就可以设置下个定时器。
+
+        function throttle2(func, wait) {
+            var timeout;
+
+            return function () {
+                var context = this;
+                var args = arguments;
+                if (!timeout) {
+                    timeout = setTimeout(function () {
+                        timeout = null;
+                        func.apply(context, args);
+                    }, wait);
+                }
+            }
+        }
+
+
+
+
+
+    </script>
+</body>
+
+</html>

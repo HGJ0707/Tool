@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fibonacci</title>
+</head>
+
+<body>
+    <script>
+        //递归
+        function fibo1(n) {
+            if (n <= 1) {
+                return 1;
+            }
+            return fibo1(n - 1) + fibo1(n - 2);
+        }
+
+        //尾递归优化(函数的最后一步调用自身)
+        //ES6 的尾调用优化只在严格模式下开启，正常模式是无效的。
+        function fibo2(n, n1 = 1, n2 = 1) {
+            if (n <= 1) {
+                return n2;
+            }
+            return fibo2(n - 1, n2, n1 + n2);
+        }
+
+
+
+        //斐波那契数列（递归 + 缓存）
+        var cache = {};
+        function fib(n) {
+            if (cache.hasOwnProperty(n)) {
+                return cache[n];
+            }
+            var v = n == 0 || n == 1 ? 1 : fib(n - 1) + fib(n - 2);
+            cache[n] = v;
+            return v;
+        }
+
+        console.log(fib(9));
+    </script>
+</body>
+
+</html>

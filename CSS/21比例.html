@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>https://juejin.cn/post/6858245228865077261</title>
+    <style>
+        /* 方法1：使用vw和vh */
+        /* 
+        .box{
+            width:20%;
+            height:10vw;
+            background-color: red;
+        } */
+
+
+        /* 方法2：padding是相对于父元素的width */
+        .box {
+            padding-bottom: 10%;
+            width: 20%;
+            height: 0;
+            background-color: red;
+        }
+
+        .wrapper {
+            border: 0.5px red solid;
+            width: 100px;
+            height: 100px;
+            transform:scale(0.5)
+        }
+    </style>
+</head>
+
+<body>
+    <div class="wrapper">
+        <div class="box">312313131313123</div>
+    </div>
+
+    <hr>
+</body>
+
+</html>

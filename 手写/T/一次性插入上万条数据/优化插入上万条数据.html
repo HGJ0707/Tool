@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        .container {
+            width: 300px;
+            height: 600px;
+            overflow: auto;
+            border: 1px solid;
+            margin: 100px auto;
+        }
+
+        .item {
+            height: 29px;
+            line-height: 30px;
+            border-bottom: 1px solid #aaa;
+            padding-left: 20px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- //一次性插入上万条数据
+    //1.setTimeout,先渲染首屏数据，再通过setTimeout一次渲染
+    //2.用requestAnimationFrame进行操作
+    //3.长列表优化，用虚拟列表的方式进行操作，每一次都进行插入删除，只显示用户看到的内容
+    //4.dom操作，配合字符模板，减少dom操作，用innerHTML -->
+
+
+
+    <!-- methods1 -->
+    <!-- <ul></ul>
+    <script src="./methods1.js"></script> -->
+
+
+    
+
+    <div id="app">
+        <button @click="add">增加</button>
+        <div class="container" ref="container">
+            <div class="scroll-wrapper" :style="style">
+                <div v-for="(item, index) in scrollList" :key="index" class="item">{{item}}</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- <div id="app">
+        <button @click = "add">添加</button>
+        <div class="container" ref="container">
+            <div class="scroll-wrapper" :style = "style">
+                <div class="item" v-for = "(item, index) in scrollList" :key="index">{{ item }}</div>
+            </div>
+        </div>
+    </div> -->
+
+
+    <script src="https://cdn.bootcdn.net/ajax/libs/vue/2.6.14/vue.common.dev.js"></script>
+    <script src="../test.js"></script>
+    
+
+</body>
+
+</html>
